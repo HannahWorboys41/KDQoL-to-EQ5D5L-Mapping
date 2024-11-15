@@ -1,1 +1,30 @@
 Instructions for using .ster file to estimate EQ-5D-5L utility from KDQoL responses 
+ster filesare ways of storing and loading the estimates from the model we have chosen to be the preferred model for the mapping function. 
+
+Download the KDQoLmap.ster file into your working directory 
+Open Stata
+Set your working directory to the same file path you have saved the above file 
+Ensure you have installed the aldvmm command in Stata by typing: 
+net install st0401_1, from("http://www.stata-journal.com/software/sj16-4")
+
+Preparing the data - in order for the ster file to work, you will need to have the data in the correct format
+For this mapping function, you need the following: 
+•	age10 – age divided by 10  
+•	female - (0=male, 1=female)
+•	pcs10 - physical component summary from SF-12 divided by 10  
+•	mcs10 mental component summary from SF-12 divided by 10  
+•	burden10 - burden domain from KDQoL divided by 10  
+•	symptom10 – symptom domain from KDQoL divided by 10 
+•	effects10 – effects domain from KDQoL divided by 10 
+•	kdqoltotal50 – pcs + mcs + burden + symptom + effects divided by 50 
+
+Running the model  
+when your data is in the correct format, run the aldvmm command using the ster file. This is done by entering the following code: 
+clear 
+use “name of dataset with correctly formatted variables” 
+estimates use “KDQoLmap.ster” 
+aldvmm 
+predict eq5d, outcome(all) 
+sum eq5d 
+
+this will create a new variable with the EQ-5D-5L predictions for each observation. 
