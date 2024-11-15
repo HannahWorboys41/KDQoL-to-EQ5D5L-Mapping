@@ -27,4 +27,4 @@ aldvmm
 predict eq5d, outcome(all) 
 sum eq5d 
 
-this will create a new variable with the EQ-5D-5L predictions for each observation. 
+This will create a new variable with the EQ-5D-5L predictions for each observation. 
